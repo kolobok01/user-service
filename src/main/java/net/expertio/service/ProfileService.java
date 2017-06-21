@@ -39,10 +39,14 @@ public class ProfileService extends ProfileServiceGrpc.ProfileServiceImplBase {
           }
 
           @Override
-          public void onError(Throwable t) {}
+          public void onError(Throwable t) {
+              //like a good developers we do nothing
+          }
 
           @Override
-          public void onCompleted() {}
+          public void onCompleted() {
+
+          }
         });
   }
 }
