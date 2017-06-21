@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "net.expertio.service";
+option java_outer_classname = "UserServiceProto";
+option objc_class_prefix = "EAPI";
+
+package core;
+
+import "user.proto";
+
+service UserService {
+    rpc GetUser (GetUserRequest) returns (User);
+}
+
+service ProfileService {
+    rpc GetProfile (GetProfileRequest) returns (Profile);
+}
