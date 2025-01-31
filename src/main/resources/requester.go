@@ -21,13 +21,13 @@ func handleJSON(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	var data map[string]interface{}
-	if err := json.Unmarshal(body, &data); err != nil {
+	var jsonData json.RawMessage
+	if err := json.Unmarshal(body, &jsonData); err != nil {
 		http.Error(w, "Invalid JSON", http.StatusBadRequest)
 		return
 	}
 
-	fmt.Println("Received JSON:", data)
+	fmt.Println("Received JSON:", string(jsonData))
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
@@ -36,6 +36,6 @@ func handleJSON(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/json", handleJSON)
-	fmt.Println("Server started on :9786")
-	log.Fatal(http.ListenAndServe(":9786", nil))
+	fmt.Println("Server started on :8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
