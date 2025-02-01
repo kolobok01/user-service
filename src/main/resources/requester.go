@@ -39,3 +39,20 @@ func main() {
 	fmt.Println("Server started on :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
+
+
+{{ define "block.alerts" -}}
+{
+"alerts": [
+{{ range $a, $el := .Alerts }}
+{{if $a}},
+{{end}}
+{
+  {{ range $i, $e := .Labels.SortedPairs }}
+{{if $i}},{{end}}"{{ .Name }}": "{{ .Value }}"
+{{end}}
+}
+{{ end }}
+]
+}
+{{ end -}}
